@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Program Antrian</title>
+</head>
+<body>
+    <h1>Program Antrian</h1>
+    
+    <input type="text" id="item" placeholder="Masukkan item antrian">
+    <button onclick="enqueue()">Tambahkan ke Antrian</button>
+    <button onclick="dequeue()">Hapus dari Antrian</button>
+    
+    <h2>Antrian Saat Ini:</h2>
+    <ul id="antrian"></ul>
+    
+    <script>
+        // Inisialisasi antrian sebagai array kosong
+        var antrian = [];
+
+        // Fungsi untuk menambahkan item ke antrian
+        function enqueue() {
+            var item = document.getElementById("item").value;
+            if (item !== "") {
+                antrian.push(item);
+                updateQueue();
+            }
+        }
+
+        // Fungsi untuk menghapus item dari antrian
+        function dequeue() {
+            if (antrian.length > 0) {
+                var removedItem = antrian.shift();
+                alert("Item yang dihapus dari antrian: " + removedItem);
+                updateQueue();
+            } else {
+                alert("Antrian sudah kosong.");
+            }
+        }
+
+        // Fungsi untuk memperbarui tampilan antrian pada halaman
+        function updateQueue() {
+            var antrianElement = document.getElementById("antrian");
+            antrianElement.innerHTML = "";
+
+            for (var i = 0; i < antrian.length; i++) {
+                var listItem = document.createElement("li");
+                listItem.appendChild(document.createTextNode(antrian[i]));
+                antrianElement.appendChild(listItem);
+            }
+        }
+    </script>
+</body>
+</html>
